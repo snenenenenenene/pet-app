@@ -1,7 +1,6 @@
 import { Pet } from "@/app/constants/types";
 import { PB } from "@/app/store/store";
 import { load } from "cheerio";
-export const allPets: Pet[] = [];
 const getNewPets = false;
 
 export async function GET(request: Request) {
