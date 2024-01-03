@@ -1,4 +1,5 @@
 import { load } from "cheerio";
+import { Pet } from "../constants/types";
 
 export async function scrapeNalasFriends() {
   async function getLink(link: string) {
