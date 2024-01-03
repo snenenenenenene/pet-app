@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+# pocketbase
+/database
+
 # next.js
 /.next/
 /out/

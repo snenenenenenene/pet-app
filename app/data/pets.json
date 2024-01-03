@@ -1,0 +1,226 @@
+[
+  {
+    "id": 2,
+    "name": "Lars",
+    "type": "cat",
+    "breed": "european short hair",
+    "images": ["https://random.dog/037c01a0-99b3-4757-90b5-04df9be427a6.JPG"],
+    "description": "DUO ADOPTIE MET KAT MELOENTJE Hallo, ik ben Lars. Ik ben nog een speelse kitten en zoek een liefdevol thuis samen met mijn vriend Meloentje. Samen zorgen we voor dubbel plezier en gezelligheid. Heb jij ruimte voor ons tweetjes? www.twas-typerescue.be/intresseformulier-kat",
+    "age": "6 months",
+    "neutered": true
+  },
+  {
+    "id": 3,
+    "name": "Bella",
+    "type": "dog",
+    "breed": "labrador retriever",
+    "images": ["https://random.dog/037c01a0-99b3-4757-90b5-04df9be427a6.JPG"],
+    "description": "Hi there! I'm Bella, a friendly Labrador Retriever. I love long walks, playing fetch, and, of course, belly rubs. I'm great with kids and other pets. Looking for a forever family to share my love with. Are you the one? www.twas-typerescue.be/intresseformulier-dog",
+    "age": 3,
+    "neutered": true
+  },
+  {
+    "id": 4,
+    "name": "Charlie",
+    "type": "dog",
+    "breed": "golden retriever",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-charlie-127700-main.jpeg"
+    ],
+    "description": "Woof! I'm Charlie, a cheerful Golden Retriever. I'm gentle, loyal, and always ready for a good time. Whether it's a game of fetch or a cozy cuddle, I'm your guy. Let's make happy memories together! www.twas-typerescue.be/intresseformulier-dog",
+    "age": 4,
+    "neutered": true
+  },
+  {
+    "id": 5,
+    "name": "Sasha",
+    "type": "cat",
+    "breed": "siamese",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-sasha-127701-main.jpeg"
+    ],
+    "description": "Meow! I'm Sasha, a beautiful Siamese cat. I'm a bit shy at first, but once I warm up to you, I'm a sweet and affectionate companion. Looking for a patient and loving home to call my own. Can you be my purr-ever family? www.twas-typerescue.be/intresseformulier-kat",
+    "age": 1,
+    "neutered": true
+  },
+  {
+    "id": 6,
+    "name": "Rocky",
+    "type": "dog",
+    "breed": "boxer",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-rocky-127702-main.jpeg"
+    ],
+    "description": "Hello, I'm Rocky, a playful Boxer with lots of energy. I love to run, jump, and play fetch. If you're an active family looking for a fun-loving companion, I'm your guy! Let's embark on adventures together. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 2,
+    "neutered": true
+  },
+  {
+    "id": 7,
+    "name": "Misty",
+    "type": "cat",
+    "breed": "maine coon",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-misty-127703-main.jpeg"
+    ],
+    "description": "Meow there! I'm Misty, a majestic Maine Coon. I have a luxurious coat and a gentle disposition. I enjoy lounging in sunbeams and receiving chin scratches. Ready to add a touch of elegance to your home? www.twas-typerescue.be/intresseformulier-kat",
+    "age": 3,
+    "neutered": true
+  },
+  {
+    "id": 8,
+    "name": "Max",
+    "type": "dog",
+    "breed": "german shepherd",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-max-127704-main.jpeg"
+    ],
+    "description": "Woof! I'm Max, a loyal German Shepherd. I'm intelligent, obedient, and protective. Whether it's a game of fetch or a stroll in the park, I'm ready for it. Seeking a loving family to be my pack. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 5,
+    "neutered": true
+  },
+  {
+    "id": 9,
+    "name": "Luna",
+    "type": "cat",
+    "breed": "ragdoll",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-luna-127705-main.jpeg"
+    ],
+    "description": "Hello, I'm Luna, a charming Ragdoll cat. I have striking blue eyes and a calm demeanor. I enjoy lounging in cozy spots and receiving gentle pets. Looking for a serene home to share my purr-sonality. www.twas-typerescue.be/intresseformulier-kat",
+    "age": 2,
+    "neutered": true
+  },
+  {
+    "id": 10,
+    "name": "Oliver",
+    "type": "dog",
+    "breed": "beagle",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-oliver-127706-main.jpeg"
+    ],
+    "description": "Woof woof! I'm Oliver, a friendly Beagle with a nose for adventure. I love exploring and sniffing around. If you're looking for a curious and affectionate companion, I'm your guy! Let's go on exciting walks together. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 3,
+    "neutered": true
+  },
+  {
+    "id": 11,
+    "name": "Mia",
+    "type": "cat",
+    "breed": "persian",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-mia-127707-main.jpeg"
+    ],
+    "description": "Meow there! I'm Mia, a beautiful Persian cat with a fluffy coat. I enjoy lounging in luxurious spots and receiving gentle brushes. Looking for a home that appreciates my regal charm. Can I be your feline friend? www.twas-typerescue.be/intresseformulier-kat",
+    "age": 4,
+    "neutered": true
+  },
+  {
+    "id": 12,
+    "name": "Riley",
+    "type": "dog",
+    "breed": "poodle",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-riley-127708-main.jpeg"
+    ],
+    "description": "Hi, I'm Riley, a charming Poodle with a curly coat. I'm friendly, hypoallergenic, and great with families. Whether it's a game of fetch or a cozy nap, count me in! Ready to add a touch of elegance to your home? www.twas-typerescue.be/intresseformulier-dog",
+    "age": 2,
+    "neutered": true
+  },
+  {
+    "id": 13,
+    "name": "Simba",
+    "type": "cat",
+    "breed": "bengal",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-simba-127709-main.jpeg"
+    ],
+    "description": "Roar! I'm Simba, a playful Bengal cat with striking spots. I love climbing and exploring high places. Looking for an adventurous family to join. Can you keep up with my feline antics? www.twas-typerescue.be/intresseformulier-kat",
+    "age": 1,
+    "neutered": true
+  },
+  {
+    "id": 14,
+    "name": "Coco",
+    "type": "dog",
+    "breed": "shih tzu",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-coco-127710-main.jpeg"
+    ],
+    "description": "Woof woof! I'm Coco, a sweet Shih Tzu with a fluffy coat. I'm affectionate, gentle, and great with kids. If you're looking for a loving companion, I'm here for cuddles and companionship. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 3,
+    "neutered": true
+  },
+  {
+    "id": 15,
+    "name": "Nala",
+    "type": "cat",
+    "breed": "sphynx",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-nala-127711-main.jpeg"
+    ],
+    "description": "Meow there! I'm Nala, a charming Sphynx cat with a hairless coat. Despite my lack of fur, I'm a warm and affectionate companion. Looking for a cozy home to share my love. www.twas-typerescue.be/intresseformulier-kat",
+    "age": 2,
+    "neutered": true
+  },
+  {
+    "id": 16,
+    "name": "Buddy",
+    "type": "dog",
+    "breed": "bulldog",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-buddy-127712-main.jpeg"
+    ],
+    "description": "Hello, I'm Buddy, a laid-back Bulldog with a wrinkled face. I enjoy leisurely strolls and relaxing in comfortable spots. If you're looking for a chill companion, I'm your pal. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 4,
+    "neutered": true
+  },
+  {
+    "id": 17,
+    "name": "Oreo",
+    "type": "cat",
+    "breed": "domestic shorthair",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-oreo-127713-main.jpeg"
+    ],
+    "description": "Hi there! I'm Oreo, a playful Domestic Shorthair with a distinctive black and white coat. I love chasing toys and lounging in sunny spots. Ready to add a touch of sweetness to your home? www.twas-typerescue.be/intresseformulier-kat",
+    "age": 1,
+    "neutered": true
+  },
+  {
+    "id": 18,
+    "name": "Zeus",
+    "type": "dog",
+    "breed": "great dane",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-zeus-127714-main.jpeg"
+    ],
+    "description": "Woof! I'm Zeus, a majestic Great Dane with a gentle heart. Despite my size, I'm a friendly giant who loves gentle pats and treats. Looking for a spacious home to call my own. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 3,
+    "neutered": true
+  },
+  {
+    "id": 19,
+    "name": "Mittens",
+    "type": "cat",
+    "breed": "russian blue",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-mittens-127715-main.jpeg"
+    ],
+    "description": "Meow there! I'm Mittens, a charming Russian Blue with striking blue-gray fur. I enjoy quiet moments and the occasional playful session. Ready to add elegance to your home with my presence. www.twas-typerescue.be/intresseformulier-kat",
+    "age": 2,
+    "neutered": true
+  },
+  {
+    "id": 20,
+    "name": "Cooper",
+    "type": "dog",
+    "breed": "labradoodle",
+    "images": [
+      "https://media.typeshelter.be/101421/twas-type-rescue-cooper-127716-main.jpeg"
+    ],
+    "description": "Hello, I'm Cooper, a friendly Labradoodle with a curly coat. I'm hypoallergenic, playful, and great with families. If you're looking for a lovable companion, I'm here to bring joy to your home. www.twas-typerescue.be/intresseformulier-dog",
+    "age": 2,
+    "neutered": false
+  }
+]
