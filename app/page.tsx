@@ -22,15 +22,17 @@ export default function Home() {
   });
 
   const searchParams = useSearchParams();
-
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(
     searchParams.get("page") ? parseInt(searchParams.get("page") as string) : 1
   );
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const res = await fetchGetJSON("/api/pets?page=" + page);
       setData(res);
+      setLoading(false);
     };
 
     fetchData();
@@ -50,7 +52,7 @@ export default function Home() {
   const [selectedRace, setSelectedRace] = useState(races[0]);
 
   return (
-    <div className="flex mt-6">
+    <div className="flex py-8 w-full h-full">
       <section className="mb-10 bg-light-secondary rounded-lg py-10 ml-8 h-full flex flex-col px-6 gap-2 w-1/5">
         <h1 className="text-2xl font-bold">Filter by</h1>
         <section className="flex flex-col gap-2">
@@ -114,31 +116,51 @@ export default function Home() {
           />
         </div>
         <div className="flex flex-col">
-          <div className="grid h-full w-full grid-cols-3 gap-8 p-8">
-            {data.items ? (
-              data.items.map((pet) => (
+          {data.items && data.items.length > 0 ? (
+            <div className="grid h-full w-full grid-cols-2 gap-8 p-8">
+              {data.items.map((pet) => (
                 <Link
                   href={`/pets/${pet.id}`}
                   key={pet.id}
-                  className="flex hover:scale-110 hover:z-50 hover:bg-light-primary p-2 rounded-lg transition-all duration-150 flex-col"
+                  className="flex hover:scale-110 hover:z-50 hover:bg-light-primary p-2 rounded-lg transition-all duration-150"
                 >
-                  <img
-                    className="w-full rounded-lg"
-                    src={pet.images[0]}
-                    alt={`Picture of ${pet.name}`}
-                  />
-                  <div className="flex flex-col px-2 py-4">
+                  <picture className="h-56 w-56 min-h-56 min-w-56 bg-light-primary rounded-lg overflow-hidden">
+                    <img
+                      className="object-cover flex"
+                      src={pet.images[0]}
+                      alt={`Picture of ${pet.name}`}
+                    />
+                  </picture>
+                  <div
+                    justify-center
+                    overflow-x-hidden
+                    className="flex flex-col px-2 py-4"
+                  >
                     <h2 className="text-2xl font-bold">{pet.name}</h2>
-                    <p className=" line-clamp-3">{pet.description}</p>
+                    <p className=" line-clamp-1">{pet.description}</p>
                   </div>
                 </Link>
-              ))
-            ) : (
-              <div className="flex justify-center w-full h-full">
-                <h1 className="text-3xl font-bold">No pets found</h1>
-              </div>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : loading ? (
+            <div className="flex flex-col items-center justify-center w-full h-full">
+              <img
+                src="/cat-loading.png"
+                className="object-contain w-1/2"
+                alt="Loading"
+              />
+              <h1 className="text-3xl font-bold">Loading pets...</h1>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center w-full h-full">
+              <img
+                src="/no-pets.svg"
+                className="object-contain w-1/3"
+                alt="No pets found"
+              />
+              <h1 className="text-3xl font-bold">No pets found</h1>
+            </div>
+          )}
           <div className="flex my-8 justify-center w-full h-full">
             <div className="flex gap-4">
               {Array.from(Array(data.totalPages).keys()).map((p) => (

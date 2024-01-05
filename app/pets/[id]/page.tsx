@@ -34,7 +34,15 @@ export default function Pets(context: any) {
               .replace(/\n/g, "<br />")
               .replace(/<br \/><br \/>/g, "<br />")
               .replace(
+                /https:\/\/youtube.com\/shorts\/([a-zA-Z0-9_-]{11})\?feature=share/g,
+                '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+              )
+              .replace(
                 /https:\/\/youtube.com\/shorts\/([a-zA-Z0-9_-]{11})/g,
+                '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+              )
+              .replace(
+                /https:\/\/youtu.be\/([a-zA-Z0-9_-]{11})/g,
                 '<iframe width="560" height="315" src="https://www.youtube.com/embed/$1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
               ),
           }}
