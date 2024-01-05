@@ -113,7 +113,7 @@ export const scrapeAce = async () => {
   let lastPageContent = "";
   const allData: any[] = [];
 
-  while (page <= 1) {
+  while (page <= 20) {
     const response = await fetch(
       `https://ace-charity.org/en/zoek-kat/?this_page=${page}`
     );

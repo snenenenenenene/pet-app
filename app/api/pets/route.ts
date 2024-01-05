@@ -1,5 +1,5 @@
 import { Pet } from "@/app/constants/types";
-import { scrapeAce } from "@/app/data/scrapeNalasfriends";
+import { scrapeAce, scrapeNalasFriends } from "@/app/data/scrapeNalasfriends";
 import { PB } from "@/app/store/store";
 const getNewPets = false;
 
@@ -27,22 +27,22 @@ export async function GET(request: Request) {
         });
       });
 
-    // await scrapeNalasFriends().then((pets) => {
-    //   pets.forEach(async (pet: Pet) => {
-    //     await PB.collection("pets")
-    //       .getOne(pet.name)
-    //       .catch(async () => {
-    //         await PB.collection("pets")
-    //           .create(pet)
-    //           .catch((err) => {
-    //             console.error(
-    //               "Something went wrong with retrieving the pets from Nala's Friends",
-    //               err
-    //             );
-    //           });
-    //       });
-    //   });
-    // });
+    await scrapeNalasFriends().then((pets) => {
+      pets.forEach(async (pet: Pet) => {
+        await PB.collection("pets")
+          .getOne(pet.name)
+          .catch(async () => {
+            await PB.collection("pets")
+              .create(pet)
+              .catch((err) => {
+                console.error(
+                  "Something went wrong with retrieving the pets from Nala's Friends",
+                  err
+                );
+              });
+          });
+      });
+    });
 
     await scrapeAce().then((pets) => {
       pets.forEach(async (pet: Pet) => {
@@ -61,6 +61,6 @@ export async function GET(request: Request) {
       });
     });
   }
-  const allPets = await PB.collection("pets").getList(parseInt(page) || 1, 15);
+  const allPets = await PB.collection("pets").getList(parseInt(page) || 1, 12);
   return new Response(JSON.stringify(allPets));
 }

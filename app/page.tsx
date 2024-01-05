@@ -51,82 +51,92 @@ export default function Home() {
 
   const [selectedRace, setSelectedRace] = useState(races[0]);
 
+  const [showFilters, setShowFilters] = useState(false);
   return (
     <div className="flex py-8 w-full h-full">
-      <section className="mb-10 bg-light-secondary rounded-lg py-10 ml-8 h-full flex flex-col px-6 gap-2 w-1/5">
-        <h1 className="text-2xl font-bold">Filter by</h1>
-        <section className="flex flex-col gap-2">
-          <h2 className="text-lg font-bold">Type</h2>
-          <select
-            onChange={(e) => {
-              setSelectedType(e.target.value);
-            }}
-            className="text-light-dark bg-light-light rounded-md px-4 h-8 w-full"
-          >
-            <option value="all" defaultChecked>
-              All
-            </option>
-            {types.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </section>
-        <section className="flex flex-col gap-2">
-          <h2 className="text-lg font-bold">Breed</h2>
-          <select
-            onChange={(e) => {
-              setSelectedRace(e.target.value);
-            }}
-            className="text-light-dark bg-light-light  rounded-md px-4 h-8 w-full"
-          >
-            <option value="all" defaultChecked>
-              All
-            </option>
-            {races.map((race) => (
-              <option key={race} value={race}>
-                {race}
-              </option>
-            ))}
-          </select>
-        </section>
-        <section>
-          <h2 className="text-lg font-bold">Organisation</h2>
-          <select className="text-light-dark bg-light-light  rounded-md px-4 h-8 w-full">
-            <option value="all" defaultChecked>
-              All
-            </option>
-            {data.items.map((pet) => (
-              <option key={pet.organisation} value={pet.organisation}>
-                {pet.organisation}
-              </option>
-            ))}
-          </select>
-        </section>
-      </section>
       <section className="flex w-full h-full overflow-y-scroll flex-col">
-        <div className="w-full flex">
-          <input
+        <div className="w-full flex gap-x-10 px-10">
+          <picture className="">
+            {/* <p>Petmatch</p> */}
+            <img src="/logo.svg" alt="Logo" className="object-contain h-12" />
+          </picture>
+          <section className="relative">
+            <button
+              onClick={() => {
+                setShowFilters(!showFilters);
+              }}
+              className="rounded-3xl bg-light-primary-2 px-4 py-2 w-24"
+            >
+              Filters
+            </button>
+            {showFilters && (
+              <section className="w-fit mb-10 bg-light-light-2 shadow-2xl h-fit absolute top-12 left-0 rounded-lg py-10 ml-8 flex flex-col px-6 gap-2">
+                <section className="flex flex-col gap-2 w-56">
+                  <h2 className="text-lg font-bold">Breed</h2>
+                  <select
+                    onChange={(e) => {
+                      setSelectedRace(e.target.value);
+                    }}
+                    className="text-light-dark bg-light-light  rounded-md px-4 h-8 w-full"
+                  >
+                    <option value="all" defaultChecked>
+                      All
+                    </option>
+                    {races.map((race) => (
+                      <option key={race} value={race}>
+                        {race}
+                      </option>
+                    ))}
+                  </select>
+                </section>
+                <section>
+                  <h2 className="text-lg font-bold">Organisation</h2>
+                  <select className="text-light-dark bg-light-light  rounded-md px-4 h-8 w-full">
+                    <option value="all" defaultChecked>
+                      All
+                    </option>
+                    {data.items.map((pet) => (
+                      <option key={pet.organisation} value={pet.organisation}>
+                        {pet.organisation}
+                      </option>
+                    ))}
+                  </select>
+                </section>
+              </section>
+            )}
+          </section>
+          <section>
+            <button className="rounded-3xl bg-light-primary-2 flex px-4 py-2 w-24 justify-between">
+              <img src="/cat.svg" alt="Logo" className="object-cover w-6 h-6" />
+              Cats
+            </button>
+          </section>
+          <section>
+            <button className="rounded-3xl bg-light-primary-2 flex px-4 py-2 w-24 justify-between">
+              <img src="/dog.svg" alt="Logo" className="object-cover w-6 h-6" />
+              Dogs
+            </button>
+          </section>
+          {/* <input
             className="mx-auto text-light-dark bg-light-light border-2 border-light-dark rounded-md px-4 h-8 w-1/3"
             placeholder="Search a name..."
             onChange={(e) => {
               setName(e.target.value);
             }}
-          />
+          /> */}
         </div>
         <div className="flex flex-col">
           {data.items && data.items.length > 0 ? (
-            <div className="grid h-full w-full grid-cols-2 gap-8 p-8">
+            <div className="grid h-full w-full grid-cols-4 gap-8 p-8">
               {data.items.map((pet) => (
                 <Link
                   href={`/pets/${pet.id}`}
                   key={pet.id}
-                  className="flex hover:scale-110 hover:z-50 hover:bg-light-primary p-2 rounded-lg transition-all duration-150"
+                  className="flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary p-2 rounded-lg transition-all duration-150"
                 >
-                  <picture className="h-56 w-56 min-h-56 min-w-56 bg-light-primary rounded-lg overflow-hidden">
+                  <picture className="w-full h-64 bg-light-primary rounded-lg overflow-hidden">
                     <img
-                      className="object-cover flex"
+                      className="object-cover flex w-full"
                       src={pet.images[0]}
                       alt={`Picture of ${pet.name}`}
                     />
@@ -136,7 +146,10 @@ export default function Home() {
                     overflow-x-hidden
                     className="flex flex-col px-2 py-4"
                   >
-                    <h2 className="text-2xl font-bold">{pet.name}</h2>
+                    <span className="flex justify-between">
+                      <h2 className="text-2xl font-bold">{pet.name}</h2>
+                      <p>{pet.age}</p>
+                    </span>
                     <p className=" line-clamp-1">{pet.description}</p>
                   </div>
                 </Link>
