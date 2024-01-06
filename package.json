@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
     "next": "14.0.4",
     "pocketbase": "^0.20.1",
     "react": "^18",

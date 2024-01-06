@@ -7,7 +7,7 @@ export interface PetStore {
   // eslint-disable-next-line no-unused-vars
   setAllPets: (pets: Pet[]) => void;
 }
-export const PB = new PocketBase("http://127.0.0.1:8090/");
+export const PB = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL);
 PB.autoCancellation(false);
 
 export const usePetStore = create<PetStore>((set) => ({
