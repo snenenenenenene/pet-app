@@ -15,19 +15,19 @@ export default function AccountPopUp({ className }: { className?: string }) {
         {showAccountPopUp && (
           <div className="absolute top-14 right-0 w-40 h-fit bg-light-light-2 shadow-2xl rounded-lg flex flex-col p-4">
             <Link
-              href={"/settings"}
+              href={PB.authStore.model ? "/settings" : "/auth/login"}
               className="flex flex-col gap-2 hover:bg-light-primary-2 rounded-3xl justify-center items-center p-4"
             >
               <picture className="relative" />
               <p className="text-light-dark font-bold">
-                {PB.authStore?.model?.name}
+                {PB.authStore?.model?.name || "Log In"}
               </p>
               <p className="text-light-dark font-bold"></p>
             </Link>
             <div className="flex flex-col gap-2">
               <Link
                 href={"/favourites"}
-                className="w-full h-10 rounded-3xl shadow bg-light-light text-light-dark font-bold hover:bg-light-primary-2"
+                className="w-full h-10 flex justify-center items-center rounded-3xl shadow bg-light-light text-light-dark font-bold hover:bg-light-primary-2"
               >
                 Favourites
               </Link>
