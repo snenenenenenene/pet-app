@@ -1,7 +1,13 @@
 import { load } from "cheerio";
 import { Pet } from "../constants/types";
 
-export async function scrapeNalasFriends() {
+export async function scrapeNalasFriends({
+  type,
+  random,
+}: {
+  type: string;
+  random: number;
+}) {
   async function getLink(link: string) {
     const linkResponse = await fetch(link);
     const linkHtmlString = await linkResponse.text();
@@ -26,7 +32,9 @@ export async function scrapeNalasFriends() {
 
   while (page <= 4) {
     const response = await fetch(
-      `https://www.nalasfriends.com/en/adopt?ccm_paging_p=${page}`
+      type === "cat"
+        ? `https://www.nalasfriends.com/en/adopt?animal=1630&ccm_paging_p=${page}`
+        : `https://www.nalasfriends.com/en/adopt?animal=1629&ccm_paging_p=${page}`
     );
 
     console.log(`Page: ${page}, Status: ${response.status}`);
@@ -64,12 +72,13 @@ export async function scrapeNalasFriends() {
 
           return {
             name,
+            random: random,
             age: 0,
             sex: "Unknown",
             country: "Unknown",
             neutered: false,
             adopted: false,
-            type: "Unknown",
+            type: type,
             breed: "Unknown",
             organisation: "Nala's Friends",
             ...linkData,
@@ -87,7 +96,13 @@ export async function scrapeNalasFriends() {
 
 // https://ace-charity.org/en/zoek-kat/?this_page=1
 
-export const scrapeAce = async () => {
+export const scrapeAce = async ({
+  type,
+  random,
+}: {
+  type: string;
+  random: number;
+}) => {
   async function getLink(link: string) {
     const linkResponse = await fetch(link);
     const linkHtmlString = await linkResponse.text();
@@ -100,6 +115,13 @@ export const scrapeAce = async () => {
     const list = $(
       "[class='list-group-item d-flex justify-content-between align-items-center']"
     );
+    const images = $("ol")
+      .find("li")
+      .find("img")
+      .map((_i, img) => {
+        return `${$(img).attr("data-src")}`;
+      })
+      .get();
 
     const age = list.eq(1).find("span").eq(1).text();
     const breed = list
@@ -117,6 +139,7 @@ export const scrapeAce = async () => {
       breed: breed[0].toLowerCase(),
       age: age,
       sex: sex,
+      images: images,
     };
   }
 
@@ -126,7 +149,9 @@ export const scrapeAce = async () => {
 
   while (page <= 20) {
     const response = await fetch(
-      `https://ace-charity.org/en/zoek-kat/?this_page=${page}`
+      type === "cat"
+        ? `https://ace-charity.org/en/zoek-kat/?this_page=${page}`
+        : `https://ace-charity.org/en/zoek-hond/?this_page=${page}`
     );
 
     console.log(`Page: ${page}, Status: ${response.status}`);
@@ -151,10 +176,10 @@ export const scrapeAce = async () => {
         .slice(0, 5)
         .map(async (_i, el) => {
           const name = $(el).find("div div div span a").text();
-          const images = $(el)
-            .find("div img")
-            .map((_i, img) => $(img).attr("data-src"))
-            .get();
+          // const images = $(el)
+          //   .find("div img")
+          //   .map((_i, img) => $(img).attr("data-src"))
+          //   .get();
 
           const link = $(el).find("div a").attr("href");
           let linkData;
@@ -166,12 +191,12 @@ export const scrapeAce = async () => {
           return {
             name,
             age: 0,
-            type: "Cat",
+            type: type,
             adopted: false,
             country: "Unknown",
             neutered: false,
-            organisation: "Ace Charity",
-            images: images.map((image) => image),
+            random: random,
+            organisation: "Ace Charityy",
             ...linkData,
           } as Pet;
         })

@@ -2,8 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { MdNotifications, MdSearch } from "react-icons/md";
 import AccountPopUp from "./components/accountPopUp";
 import { Pet } from "./constants/types";
@@ -30,17 +30,38 @@ export default function Home() {
     searchParams.get("page") ? parseInt(searchParams.get("page") as string) : 1
   );
 
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const router = useRouter();
+  const [type, setType] = useState("");
+
   useEffect(() => {
+    router.push(
+      process.env.NEXT_PUBLIC_URL +
+        "?" +
+        createQueryString("page", page.toString())
+    );
     const fetchData = async () => {
       setLoading(true);
-      const res = await fetchGetJSON("/api/pets?page=" + page);
+      const res = await fetchGetJSON(
+        `/api/pets?page=${page}${type && `&type=${type}`}`
+      );
       setData(res);
-      console.log(res);
+      console.log(type);
       setLoading(false);
     };
 
     fetchData();
-  }, [page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, type, name]);
 
   const types = data.items
     .map((pet) => pet.type)
@@ -126,13 +147,39 @@ export default function Home() {
             )}
           </section>
           <section>
-            <button className="rounded-3xl bg-light-primary-2 flex px-4 py-2 w-24 justify-between">
+            <button
+              onClick={() => {
+                if (type === "dog") {
+                  setType("");
+                } else if (type === "cat") {
+                  setType("");
+                } else {
+                  setType("cat");
+                }
+              }}
+              className={`${
+                type === "cat" ? "bg-light-primary" : "bg-light-primary-2"
+              } rounded-3xl flex px-4 py-2 w-24 justify-between`}
+            >
               <img src="/cat.svg" alt="Logo" className="object-cover w-6 h-6" />
               Cats
             </button>
           </section>
           <section>
-            <button className="rounded-3xl bg-light-primary-2 flex px-4 py-2 w-24 justify-between">
+            <button
+              onClick={() => {
+                if (type === "cat") {
+                  setType("");
+                } else if (type === "dog") {
+                  setType("");
+                } else {
+                  setType("dog");
+                }
+              }}
+              className={`${
+                type === "dog" ? "bg-light-primary" : "bg-light-primary-2"
+              } rounded-3xl flex px-4 py-2 w-24 justify-between `}
+            >
               <img src="/dog.svg" alt="Logo" className="object-cover w-6 h-6" />
               Dogs
             </button>
