@@ -66,7 +66,9 @@ export default function Favourites() {
   return (
     <div className="flex py-4 md:py-8 w-full h-full">
       <section className="flex w-full h-full overflow-y-scroll flex-col">
-        <AccountPopUp />
+        <div className="w-full flex px-10">
+          <AccountPopUp className="ml-auto" />
+        </div>
         <div className="flex flex-col">
           {data.items && data.items.length > 0 ? (
             <div className="grid h-full w-full xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 md:p-8 p-4">
