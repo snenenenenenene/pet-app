@@ -41,7 +41,7 @@ export default function Home() {
   );
 
   const router = useRouter();
-  const [type, setType] = useState("");
+  const [type, setType] = useState<Array<"dog" | "cat">>([]);
 
   useEffect(() => {
     router.push(
@@ -50,12 +50,12 @@ export default function Home() {
         createQueryString("page", page.toString())
     );
     const fetchData = async () => {
+      const formattedType = type.length === 0 || type.length === 2 ? "" : type;
       setLoading(true);
       const res = await fetchGetJSON(
-        `/api/pets?page=${page}${type && `&type=${type}`}`
+        `/api/pets?page=${page}${type && `&type=${formattedType}`}`
       );
       setData(res);
-      console.log(type);
       setLoading(false);
     };
 
@@ -149,16 +149,15 @@ export default function Home() {
           <section>
             <button
               onClick={() => {
-                if (type === "dog") {
-                  setType("");
-                } else if (type === "cat") {
-                  setType("");
+                // add type to array if not already in array, else remove it
+                if (type.includes("cat")) {
+                  setType(type.filter((t) => t !== "cat"));
                 } else {
-                  setType("cat");
+                  setType([...type, "cat"]);
                 }
               }}
               className={`${
-                type === "cat" ? "bg-light-primary" : "bg-light-primary-2"
+                type.includes("cat") ? "bg-light-primary" : "bg-light-primary-2"
               } rounded-3xl flex px-4 py-2 w-24 justify-between`}
             >
               <img src="/cat.svg" alt="Logo" className="object-cover w-6 h-6" />
@@ -168,16 +167,14 @@ export default function Home() {
           <section>
             <button
               onClick={() => {
-                if (type === "cat") {
-                  setType("");
-                } else if (type === "dog") {
-                  setType("");
+                if (type.includes("dog")) {
+                  setType(type.filter((t) => t !== "dog"));
                 } else {
-                  setType("dog");
+                  setType([...type, "dog"]);
                 }
               }}
               className={`${
-                type === "dog" ? "bg-light-primary" : "bg-light-primary-2"
+                type.includes("dog") ? "bg-light-primary" : "bg-light-primary-2"
               } rounded-3xl flex px-4 py-2 w-24 justify-between `}
             >
               <img src="/dog.svg" alt="Logo" className="object-cover w-6 h-6" />
