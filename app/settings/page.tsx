@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { fetchGetJSON } from "../helpers/api_helpers";
+import { PB } from "../store/store";
 
 export default function Settings() {
   const [loading, setLoading] = useState(false);
@@ -18,19 +19,23 @@ export default function Settings() {
   };
   return (
     <div className="flex flex-col justify-center items-center">
-      {loading && (
-        <picture className="h-40 w-40">
-          <img src="/cat-loading.png" alt="Loading" />
-        </picture>
+      {PB.authStore?.model?.role === "admin" && (
+        <>
+          {loading && (
+            <picture className="h-40 w-40">
+              <img src="/cat-loading.png" alt="Loading" />
+            </picture>
+          )}
+          <button
+            onClick={() => {
+              fetchAllPets();
+            }}
+            className="w-full h-10 rounded-3xl shadow bg-light-primary text-light-dark font-bold hover:bg-light-primary-2 px-4 py-2"
+          >
+            {loading ? "Fetching..." : "Fetch all pets"}
+          </button>
+        </>
       )}
-      <button
-        onClick={() => {
-          fetchAllPets();
-        }}
-        className="w-full h-10 rounded-3xl shadow bg-light-primary text-light-dark font-bold hover:bg-light-primary-2 px-4 py-2"
-      >
-        {loading ? "Fetching..." : "Fetch all pets"}
-      </button>
     </div>
   );
 }

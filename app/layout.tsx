@@ -1,6 +1,5 @@
 import { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import AccountPopUp from "./components/accountPopUp";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -38,8 +37,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main className="bg-light-light font-sniglet flex-col flex h-screen w-screen text-light-dark overflow-hidden">
-          {/* <Navbar /> */}
-          <AccountPopUp />
           <div className="h-full w-full flex justify-center overflow-x-hidden">
             {children}
           </div>

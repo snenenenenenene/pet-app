@@ -4,6 +4,8 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { MdNotifications, MdSearch } from "react-icons/md";
+import AccountPopUp from "./components/accountPopUp";
 import { Pet } from "./constants/types";
 import { fetchGetJSON } from "./helpers/api_helpers";
 export default function Home() {
@@ -59,31 +61,25 @@ export default function Home() {
       <section className="flex w-full h-full overflow-y-scroll flex-col">
         <div className="flex flex-col md:hidden px-6 gap-2 pb-2">
           <section className="flex justify-between">
-            <div className="flex">
-              <picture>
-                <img
-                  src="/user.svg"
-                  alt="Logo"
-                  className="object-contain h-12"
-                />
-              </picture>
-              <h1 className="text-md font-bold">username</h1>
+            <div className="flex justify-center items-center gap-2">
+              <AccountPopUp />
+              <span>
+                <h1 className="text-md font-bold text-xl">Location</h1>
+                <p className="text-sm">Antwerp, Belgium</p>
+              </span>
             </div>
-            <div>
-              <button className="rounded-3xl bg-light-primary-2 px-4 py-2 w-24">
-                Notifications
+            <div className="flex">
+              <button className="rounded-3xl bg-light-primary-2 text-3xl h-12 p-2">
+                <MdNotifications />
               </button>
-              <button className="rounded-3xl bg-light-primary-2 px-4 py-2 w-24">
-                Search
+              <button className="rounded-3xl bg-light-primary-2 text-3xl h-12 p-2">
+                <MdSearch />
               </button>
             </div>
           </section>
           <p>Categories</p>
         </div>
         <div className="w-full flex md:gap-x-10 gap-x-2 px-6 md:px-10">
-          <picture className="md:flex hidden">
-            <img src="/logo.svg" alt="Logo" className="object-contain h-12" />
-          </picture>
           <section className="relative">
             <button
               onClick={() => {
@@ -148,6 +144,7 @@ export default function Home() {
               setName(e.target.value);
             }}
           /> */}
+          <AccountPopUp className="ml-auto" />
         </div>
         <div className="flex flex-col">
           {data.items && data.items.length > 0 ? (
