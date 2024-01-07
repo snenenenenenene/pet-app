@@ -27,7 +27,7 @@ export default function Pets(context: any) {
         />
         {data?.images.length > 1 && (
           <div className="gap-2 grid grid-cols-2">
-            {data?.images.map((image, index) => (
+            {data?.images.slice(1).map((image, index) => (
               <img
                 key={index}
                 className="object-cover rounded-lg min-h-96"
