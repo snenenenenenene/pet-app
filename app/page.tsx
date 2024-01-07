@@ -32,6 +32,7 @@ export default function Home() {
       setLoading(true);
       const res = await fetchGetJSON("/api/pets?page=" + page);
       setData(res);
+      console.log(res);
       setLoading(false);
     };
 
@@ -127,16 +128,16 @@ export default function Home() {
         </div>
         <div className="flex flex-col">
           {data.items && data.items.length > 0 ? (
-            <div className="grid h-full w-full grid-cols-4 gap-8 p-8">
+            <div className="grid h-full w-full xl:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-8 p-8">
               {data.items.map((pet) => (
                 <Link
                   href={`/pets/${pet.id}`}
                   key={pet.id}
-                  className="flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary p-2 rounded-lg transition-all duration-150"
+                  className="flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary p-8 rounded-lg transition-all duration-150"
                 >
-                  <picture className="w-full h-64 bg-light-primary rounded-lg overflow-hidden">
+                  <picture className="w-full h-40 md:h-64 rounded-lg overflow-hidden">
                     <img
-                      className="object-cover flex w-full"
+                      className="object-cover h-full flex w-full"
                       src={pet.images[0]}
                       alt={`Picture of ${pet.name}`}
                     />
