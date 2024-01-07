@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import AccountPopUp from "./components/accountPopUp";
 import "./globals.css";
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     { rel: "apple-touch-icon", url: "cat.svg" },
     { rel: "icon", url: "cat.svg" },
   ],
+};
+
+export const viewport: Viewport = {
+  themeColor: "#EE8E77",
 };
 
 export default function RootLayout({
