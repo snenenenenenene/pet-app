@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 export default function Pets(context: any) {
   const [data, setData] = useState<Pet>();
 
-  const [favourited, setFavourited] = useState<boolean>(false);
+  const [favourited, setFavourited] = useState<boolean>(
+    PB.authStore?.model?.favourites?.includes(context.params.id) ?? false
+  );
 
   useEffect(() => {
     // set data to fetch from /api/pets
@@ -23,22 +25,25 @@ export default function Pets(context: any) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
   useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+      return;
+    }
+
     async function checkFavourite() {
       if (favourited) {
         const prevFavourites = PB.authStore?.model?.favourites;
-        console.log(prevFavourites);
-        console.log([...prevFavourites, context.params.id]);
         PB.collection("users").update(PB.authStore?.model?.id as string, {
           favourites: [...prevFavourites, context.params.id],
         });
       } else {
         const prevFavourites = PB.authStore?.model?.favourites;
-        console.log(prevFavourites);
 
         if (Array.isArray(prevFavourites)) {
           const index = prevFavourites.indexOf(context.params.id);
-          console.log(index);
           if (index !== -1) {
             prevFavourites.splice(index, 1);
             PB.collection("users").update(PB.authStore?.model?.id as string, {
