@@ -1,64 +1,41 @@
-"use client";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import AccountPopUp from "./components/accountPopUp";
 import "./globals.css";
-import { usePetStore } from "./store/store";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "PawFinder",
+  description: "Pet application",
+  generator: "Next.js",
+  manifest: "/manifest.json",
+  keywords: ["nextjs", "nextjs13", "next13", "pwa", "next-pwa"],
+  authors: [
+    { name: "Senne Bels" },
+    {
+      name: "Senne Bels",
+      url: "https://www.linkedin.com/in/sennebels/",
+    },
+  ],
+  icons: [
+    { rel: "apple-touch-icon", url: "cat.svg" },
+    { rel: "icon", url: "cat.svg" },
+  ],
+};
 
 export default function RootLayout({
   children,
 }: {
+  // eslint-disable-next-line no-undef
   children: React.ReactNode;
 }) {
-  const { fetchAllPets } = usePetStore((state) => state);
-  const [showAccountPopUp, setShowAccountPopUp] = useState(false);
-  useEffect(() => {
-    fetchAllPets();
-  }, []);
-
   return (
     <html lang="en">
       <body className={inter.className}>
         <main className="bg-light-light font-sniglet flex-col flex h-screen w-screen text-light-dark overflow-hidden">
           {/* <Navbar /> */}
-          <button
-            onClick={() => setShowAccountPopUp(!showAccountPopUp)}
-            className="absolute top-0 py-8 right-4 w-20 h-10"
-          >
-            <picture className="relative">
-              <img
-                src="/user.svg"
-                className="object-contain w-1/2"
-                alt="Loading"
-              />
-              {showAccountPopUp && (
-                <div className="absolute top-14 right-0 w-40 h-fit bg-light-light-2 shadow-2xl rounded-lg flex flex-col p-4">
-                  <Link
-                    href={"/settings"}
-                    className="flex flex-col gap-2 hover:bg-light-primary-2 rounded-3xl justify-center items-center p-4"
-                  >
-                    <img
-                      src="/user.svg"
-                      className="object-contain w-1/2"
-                      alt="Loading"
-                    />
-                    <p className="text-light-dark font-bold">John Doe</p>
-                    <p className="text-light-dark font-bold"></p>
-                  </Link>
-                  <div className="flex flex-col gap-2">
-                    <button className="w-full h-10 rounded-3xl shadow bg-light-light text-light-dark font-bold hover:bg-light-primary-2">
-                      Favourites
-                    </button>
-                    <button className="w-full h-10 text-light-dark font-bold ">
-                      Sign Out
-                    </button>
-                  </div>
-                </div>
-              )}
-            </picture>
-          </button>
+          <AccountPopUp />
           <div className="h-full w-full flex justify-center overflow-x-hidden">
             {children}
           </div>

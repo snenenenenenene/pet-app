@@ -19,7 +19,9 @@ export default function Settings() {
   return (
     <div className="flex flex-col justify-center items-center">
       {loading && (
-        <img src="/cat-loading.png" className="h-40 w-40" alt="Loading" />
+        <picture className="h-40 w-40">
+          <img src="/cat-loading.png" alt="Loading" />
+        </picture>
       )}
       <button
         onClick={() => {

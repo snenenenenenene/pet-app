@@ -14,11 +14,12 @@ export default function Pets(context: any) {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return data ? (
-    <div className="flex">
-      <section className="w-1/2 m-8 flex flex-col gap-4">
+    <div className="flex md:flex-row flex-col md:p-0 p-6">
+      <section className="w-full md:w-1/2 md:m-8  flex flex-col gap-4">
         <h1 className="text-3xl font-bold underline">{data?.name}</h1>
         <img
           className="w-full object-cover rounded-lg min-h-96"
@@ -28,17 +29,21 @@ export default function Pets(context: any) {
         {data?.images.length > 1 && (
           <div className="gap-2 grid grid-cols-2">
             {data?.images.slice(1).map((image, index) => (
-              <img
+              <picture
                 key={index}
-                className="object-cover rounded-lg min-h-96"
-                src={image}
-                alt={`Picture of ${data?.name}`}
-              />
+                className="rounded-lg min-h-96 overflow-hidden"
+              >
+                <img
+                  className="object-cover h-full w-full"
+                  src={image}
+                  alt={`Picture of ${data?.name}`}
+                />
+              </picture>
             ))}
           </div>
         )}
       </section>
-      <section className="w-1/2 ">
+      <section className="w-full md:w-1/2 ">
         <p
           dangerouslySetInnerHTML={{
             __html: data?.description

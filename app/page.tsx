@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
@@ -54,11 +55,33 @@ export default function Home() {
 
   const [showFilters, setShowFilters] = useState(false);
   return (
-    <div className="flex py-8 w-full h-full">
+    <div className="flex py-4 md:py-8 w-full h-full">
       <section className="flex w-full h-full overflow-y-scroll flex-col">
-        <div className="w-full flex gap-x-10 px-10">
-          <picture className="">
-            {/* <p>Petmatch</p> */}
+        <div className="flex flex-col md:hidden px-6 gap-2 pb-2">
+          <section className="flex justify-between">
+            <div className="flex">
+              <picture>
+                <img
+                  src="/user.svg"
+                  alt="Logo"
+                  className="object-contain h-12"
+                />
+              </picture>
+              <h1 className="text-md font-bold">username</h1>
+            </div>
+            <div>
+              <button className="rounded-3xl bg-light-primary-2 px-4 py-2 w-24">
+                Notifications
+              </button>
+              <button className="rounded-3xl bg-light-primary-2 px-4 py-2 w-24">
+                Search
+              </button>
+            </div>
+          </section>
+          <p>Categories</p>
+        </div>
+        <div className="w-full flex md:gap-x-10 gap-x-2 px-6 md:px-10">
+          <picture className="md:flex hidden">
             <img src="/logo.svg" alt="Logo" className="object-contain h-12" />
           </picture>
           <section className="relative">
@@ -128,14 +151,14 @@ export default function Home() {
         </div>
         <div className="flex flex-col">
           {data.items && data.items.length > 0 ? (
-            <div className="grid h-full w-full xl:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-8 p-8">
+            <div className="grid h-full w-full xl:grid-cols-4 md:grid-cols-3 grid-cols-2 md:gap-8 gap-4 md:p-8 p-4">
               {data.items.map((pet) => (
                 <Link
                   href={`/pets/${pet.id}`}
                   key={pet.id}
-                  className="flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary p-8 rounded-lg transition-all duration-150"
+                  className="flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary md:p-8 p-2 rounded-lg transition-all duration-150"
                 >
-                  <picture className="w-full h-40 md:h-64 rounded-lg overflow-hidden">
+                  <picture className="w-full h-40 sm:h-64 rounded-lg overflow-hidden">
                     <img
                       className="object-cover h-full flex w-full"
                       src={pet.images[0]}
@@ -145,13 +168,17 @@ export default function Home() {
                   <div
                     justify-center
                     overflow-x-hidden
-                    className="flex flex-col px-2 py-4"
+                    className="flex flex-col md:px-2 md:py-4 py-2"
                   >
                     <span className="flex justify-between">
-                      <h2 className="text-2xl font-bold">{pet.name}</h2>
+                      <h2 className="md:text-2xl font-bold line-clamp-1">
+                        {pet.name}
+                      </h2>
                       <p>{pet.age}</p>
                     </span>
-                    <p className=" line-clamp-1">{pet.description}</p>
+                    <p className="md:text-base text-sm line-clamp-1">
+                      {pet.description}
+                    </p>
                   </div>
                 </Link>
               ))}

@@ -2,7 +2,8 @@ import { Pet } from "@/app/constants/types";
 import { scrapeAce, scrapeNalasFriends } from "@/app/data/scrapeNalasfriends";
 import { PB } from "@/app/lib/connect";
 
-export async function GET(request: Request) {
+// eslint-disable-next-line no-unused-vars
+export async function GET(_request: Request) {
   await PB.collection("pets")
     .getFullList({
       "--sort": "name",
@@ -52,7 +53,7 @@ export async function GET(request: Request) {
         .catch(async () => {
           await PB.collection("pets")
             .create(pet)
-            .then((resp) => {
+            .then(() => {
               console.log("created pet", pet.name);
             })
             .catch((err) => {
