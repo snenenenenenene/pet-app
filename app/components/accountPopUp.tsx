@@ -25,9 +25,12 @@ export default function AccountPopUp({ className }: { className?: string }) {
               <p className="text-light-dark font-bold"></p>
             </Link>
             <div className="flex flex-col gap-2">
-              <button className="w-full h-10 rounded-3xl shadow bg-light-light text-light-dark font-bold hover:bg-light-primary-2">
+              <Link
+                href={"/favourites"}
+                className="w-full h-10 rounded-3xl shadow bg-light-light text-light-dark font-bold hover:bg-light-primary-2"
+              >
                 Favourites
-              </button>
+              </Link>
               <button
                 onClick={() => {
                   PB.authStore?.clear();

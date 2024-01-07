@@ -3,9 +3,15 @@
 import { Pet } from "@/app/constants/types";
 import { fetchGetJSON } from "@/app/helpers/api_helpers";
 import Link from "next/link";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+
+import { PB } from "@/app/lib/connect";
 import { useEffect, useState } from "react";
 export default function Pets(context: any) {
   const [data, setData] = useState<Pet>();
+
+  const [favourited, setFavourited] = useState<boolean>(false);
+
   useEffect(() => {
     // set data to fetch from /api/pets
     const fetchData = async () => {
@@ -17,10 +23,48 @@ export default function Pets(context: any) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    async function checkFavourite() {
+      if (favourited) {
+        const prevFavourites = PB.authStore?.model?.favourites;
+        console.log(prevFavourites);
+        console.log([...prevFavourites, context.params.id]);
+        PB.collection("users").update(PB.authStore?.model?.id as string, {
+          favourites: [...prevFavourites, context.params.id],
+        });
+      } else {
+        const prevFavourites = PB.authStore?.model?.favourites;
+        console.log(prevFavourites);
+
+        if (Array.isArray(prevFavourites)) {
+          const index = prevFavourites.indexOf(context.params.id);
+          console.log(index);
+          if (index !== -1) {
+            prevFavourites.splice(index, 1);
+            PB.collection("users").update(PB.authStore?.model?.id as string, {
+              favourites: prevFavourites,
+            });
+          }
+        }
+      }
+      await PB.collection("users").authRefresh();
+    }
+    checkFavourite();
+  }, [favourited]);
+
   return data ? (
     <div className="flex md:flex-row flex-col md:p-0 p-6">
       <section className="w-full md:w-1/2 md:m-8  flex flex-col gap-4">
-        <h1 className="text-3xl font-bold underline">{data?.name}</h1>
+        <span className="flex w-full">
+          <h1 className="text-3xl font-bold underline">{data?.name}</h1>
+          <button onClick={() => setFavourited(!favourited)}>
+            {favourited ? (
+              <IoMdHeart className="text-3xl ml-auto" />
+            ) : (
+              <IoMdHeartEmpty className="text-3xl ml-auto" />
+            )}
+          </button>
+        </span>
         <img
           className="w-full object-cover rounded-lg min-h-96"
           src={data?.images[0]}

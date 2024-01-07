@@ -8,6 +8,7 @@ import { MdNotifications, MdSearch } from "react-icons/md";
 import AccountPopUp from "./components/accountPopUp";
 import { Pet } from "./constants/types";
 import { fetchGetJSON } from "./helpers/api_helpers";
+import { PB } from "./store/store";
 export default function Home() {
   const [name, setName] = useState("");
   const [data, setData] = useState<{
@@ -197,7 +198,11 @@ export default function Home() {
                 <Link
                   href={`/pets/${pet.id}`}
                   key={pet.id}
-                  className="flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary md:p-8 p-2 rounded-lg transition-all duration-150"
+                  className={`${
+                    PB.authStore?.model?.favourites?.includes(pet.id)
+                      ? "border-red-600"
+                      : "border-light-light"
+                  } border-2 flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary md:p-8 p-2 rounded-lg transition-all duration-150`}
                 >
                   <picture className="w-full h-40 sm:h-64 rounded-lg overflow-hidden">
                     <img
