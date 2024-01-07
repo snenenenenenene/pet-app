@@ -10,7 +10,6 @@ export default function Pets(context: any) {
     // set data to fetch from /api/pets
     const fetchData = async () => {
       const res = await fetchGetJSON(`/api/pets/${context.params.id}`);
-      console.log(res);
       setData(res);
     };
 
@@ -26,6 +25,18 @@ export default function Pets(context: any) {
           src={data?.images[0]}
           alt={`Picture of ${data?.name}`}
         />
+        {data?.images.length > 1 && (
+          <div className="gap-2 grid grid-cols-2">
+            {data?.images.map((image, index) => (
+              <img
+                key={index}
+                className="object-cover rounded-lg min-h-96"
+                src={image}
+                alt={`Picture of ${data?.name}`}
+              />
+            ))}
+          </div>
+        )}
       </section>
       <section className="w-1/2 ">
         <p

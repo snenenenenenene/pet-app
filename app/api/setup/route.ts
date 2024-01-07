@@ -1,10 +1,12 @@
 import { Pet } from "@/app/constants/types";
 import { scrapeAce, scrapeNalasFriends } from "@/app/data/scrapeNalasfriends";
-import { PB } from "@/app/store/store";
+import { PB } from "@/app/lib/connect";
 
 export async function GET(request: Request) {
   await PB.collection("pets")
-    .getFullList()
+    .getFullList({
+      "--sort": "name",
+    })
     .then((pets) => {
       pets.forEach(async (pet: any) => {
         await PB.collection("pets")
@@ -21,19 +23,27 @@ export async function GET(request: Request) {
   await scrapeNalasFriends().then((pets) => {
     pets.forEach(async (pet: Pet) => {
       await PB.collection("pets")
-        .getOne(pet.name)
-        .catch(async () => {
-          await PB.collection("pets")
-            .create(pet)
-            .catch((err) => {
-              console.error(
-                "Something went wrong with retrieving the pets from Nala's Friends",
-                err
-              );
-            });
+        .create(pet)
+        .then((resp) => {
+          console.log(resp);
+          console.log("created pet", pet.name);
+        })
+        .catch((err) => {
+          console.error(
+            "Something went wrong with retrieving the pets from Nala's Friends",
+            err
+          );
         });
     });
   });
+
+  //     await PB.collection("pets")
+  //       .getOne(pet.name)
+  //       .catch(async () => {
+
+  //       });
+  //   });
+  // });
 
   await scrapeAce().then((pets) => {
     pets.forEach(async (pet: Pet) => {
@@ -42,6 +52,9 @@ export async function GET(request: Request) {
         .catch(async () => {
           await PB.collection("pets")
             .create(pet)
+            .then((resp) => {
+              console.log("created pet", pet.name);
+            })
             .catch((err) => {
               console.error(
                 "Something went wrong with retrieving the pets from Ace",
@@ -52,5 +65,9 @@ export async function GET(request: Request) {
     });
   });
 
-  return new Response("Done");
+  return new Response(
+    JSON.stringify({
+      message: "Successfully retrieved all pets",
+    })
+  );
 }

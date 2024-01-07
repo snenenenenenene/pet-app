@@ -6,15 +6,15 @@ export default function Settings() {
   const [loading, setLoading] = useState(false);
   const fetchAllPets = () => {
     setLoading(true);
-    console.log("Fetching all pets...");
     fetchGetJSON("/api/setup")
       .then((res) => {
         console.log(res);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
-    setLoading(false);
   };
   return (
     <div className="flex flex-col justify-center items-center">
@@ -27,7 +27,7 @@ export default function Settings() {
         }}
         className="w-full h-10 rounded-3xl shadow bg-light-primary text-light-dark font-bold hover:bg-light-primary-2 px-4 py-2"
       >
-        Fetch all pets
+        {loading ? "Fetching..." : "Fetch all pets"}
       </button>
     </div>
   );

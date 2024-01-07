@@ -7,12 +7,22 @@ export async function scrapeNalasFriends() {
     const linkHtmlString = await linkResponse.text();
     const $ = load(linkHtmlString);
     const description = $(".blog-inner-content-2").text();
-    return { description: description };
+    const images = $(".rslides")
+      .find("img")
+      .map((_i, img) => {
+        return `https://www.nalasfriends.com${$(img).attr("src")}`.replace(
+          "\n",
+          ""
+        );
+      })
+      .get();
+
+    return { description: description, images: images };
   }
 
   let page = 1;
   let lastPageContent = "";
-  const allData: any[] = []; // Array to collect data from each page
+  const allData: any[] = [];
 
   while (page <= 4) {
     const response = await fetch(
@@ -40,10 +50,10 @@ export async function scrapeNalasFriends() {
       $("div .blog-item")
         .map(async (_i, el) => {
           const name = $(el).find("h4 a").text();
-          const images = $(el)
-            .find("img")
-            .map((_i, img) => $(img).attr("src"))
-            .get();
+          // const images = $(el)
+          //   .find("img")
+          //   .map((_i, img) => $(img).attr("src"))
+          //   .get();
 
           const link = $(el).find("h4 a").attr("href");
           let linkData;
@@ -55,12 +65,13 @@ export async function scrapeNalasFriends() {
           return {
             name,
             age: 0,
+            sex: "Unknown",
+            country: "Unknown",
+            neutered: false,
+            adopted: false,
             type: "Unknown",
             breed: "Unknown",
             organisation: "Nala's Friends",
-            images: images.map(
-              (image) => "https://www.nalasfriends.com" + image
-            ),
             ...linkData,
           } as Pet;
         })
@@ -156,6 +167,9 @@ export const scrapeAce = async () => {
             name,
             age: 0,
             type: "Cat",
+            adopted: false,
+            country: "Unknown",
+            neutered: false,
             organisation: "Ace Charity",
             images: images.map((image) => image),
             ...linkData,
