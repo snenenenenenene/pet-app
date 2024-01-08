@@ -74,12 +74,12 @@ export async function scrapeNalasFriends({
             name,
             random: random,
             age: 0,
-            sex: "Unknown",
-            country: "Unknown",
+            sex: "unknown",
+            country: "unknown",
             neutered: false,
             adopted: false,
             type: type,
-            breed: "Unknown",
+            breed: "unknown",
             organisation: "Nala's Friends",
             ...linkData,
           } as Pet;
@@ -136,7 +136,7 @@ export const scrapeAce = async ({
 
     return {
       description: description,
-      breed: breed[0].toLowerCase(),
+      breed: breed[0].toLowerCase() || "unknown",
       age: age,
       sex: sex,
       images: images,
