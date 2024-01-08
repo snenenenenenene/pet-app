@@ -12,7 +12,12 @@ export async function scrapeNalasFriends({
     const linkResponse = await fetch(link);
     const linkHtmlString = await linkResponse.text();
     const $ = load(linkHtmlString);
-    const description = $(".blog-inner-content-2").text();
+
+    // only get the first entry of the description
+    const description = $(".blog-item")
+      .find(".blog-inner-content-2")
+      .eq(0)
+      .text();
     const images = $(".rslides")
       .find("img")
       .map((_i, img) => {
