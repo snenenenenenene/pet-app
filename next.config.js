@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true, // Enable React strict mode for improved error handling
   swcMinify: true, // Enable SWC minification for improved performance
+  staticPageGenerationTimeout: 1000, // Timeout for static page generation
   compiler: {
     removeConsole: process.env.NEXT_PUBLIC_NODE_ENV !== "development",
   },
