@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="bg-light-light font-sniglet flex-col flex h-screen w-screen text-light-dark overflow-hidden">
+        <main className="bg-light-light flex-col flex h-screen w-screen text-light-dark overflow-hidden">
           <div className="h-full w-full flex justify-center overflow-x-hidden">
             {children}
           </div>
