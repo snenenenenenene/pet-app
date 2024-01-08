@@ -72,16 +72,3 @@ export default function Login() {
     </div>
   );
 }
-
-export const Input = ({ label, ...props }: any) => {
-  return (
-    <section className="flex flex-col">
-      <label htmlFor={props.id}>{label}</label>
-      <input
-        type="text"
-        className="border-2 border-light-dark rounded-lg px-4 py-2"
-        {...props}
-      />
-    </section>
-  );
-};
