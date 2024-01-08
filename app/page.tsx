@@ -101,7 +101,7 @@ export default function Home() {
           </section>
           <p>Categories</p>
         </div>
-        <div className="w-full flex md:gap-x-10 gap-x-2 px-6 md:px-10">
+        <div className="w-full flex md:gap-x-10 gap-x-2 px-6 md:px-10 font-semibold">
           <section className="relative">
             <button
               onClick={() => {
@@ -201,8 +201,8 @@ export default function Home() {
                   className={`${
                     PB.authStore?.model?.favourites?.includes(pet.id)
                       ? "border-red-600"
-                      : "border-light-light"
-                  } border-2 flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary md:p-8 p-2 rounded-lg transition-all duration-150`}
+                      : "border-light-light hover:border-light-primary"
+                  } border-2 flex shadow-xl flex-col hover:scale-110 hover:z-50 hover:bg-light-primary md:p-4 md:pb-0 p-2 rounded-lg transition-all duration-150`}
                 >
                   <picture className="w-full h-40 sm:h-64 rounded-lg overflow-hidden">
                     <img
